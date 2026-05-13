@@ -88,6 +88,10 @@ export default function RequestDetail() {
             <dt className="text-gray-400">Creada</dt>
             <dd className="text-gray-800">{new Date(request.created_at).toLocaleDateString('es-MX')}</dd>
           </div>
+          <div>
+            <dt className="text-gray-400">Prioridad</dt>
+            <dd className="text-gray-800"><StatusBadge status={request.priority} type="priority" /></dd>
+          </div>
         </dl>
 
         {user?.role === 'admin' && nextStatuses.length > 0 && (
