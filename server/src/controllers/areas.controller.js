@@ -21,8 +21,6 @@ async function getById(req, res) {
 
 async function create(req, res) {
   const { name, description } = req.body
-  if (!name) return res.status(400).json({ error: 'El nombre es requerido' })
-
   try {
     const result = await pool.query(
       'INSERT INTO areas (name, description) VALUES ($1, $2) RETURNING *',
@@ -36,8 +34,6 @@ async function create(req, res) {
 
 async function update(req, res) {
   const { name, description } = req.body
-  if (!name) return res.status(400).json({ error: 'El nombre es requerido' })
-
   try {
     const result = await pool.query(
       'UPDATE areas SET name = $1, description = $2 WHERE id = $3 RETURNING *',
