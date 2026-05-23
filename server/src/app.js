@@ -3,6 +3,7 @@ const session = require('express-session')
 const pgSession = require('connect-pg-simple')(session)
 const cors = require('cors')
 const pool = require('./config/db')
+const { errorHandler } = require('./middleware/errorHandler')
 
 const authRoutes = require('./routes/auth.routes')
 const usersRoutes = require('./routes/users.routes')
@@ -35,5 +36,7 @@ app.use('/api/users', usersRoutes)
 app.use('/api/areas', areasRoutes)
 app.use('/api/categories', categoriesRoutes)
 app.use('/api/requests', requestsRoutes)
+
+app.use(errorHandler)
 
 module.exports = app
